@@ -1,8 +1,11 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ExternalLink, Calendar, Newspaper } from "lucide-react";
-import dailyNews from "@/lib/daily-news.json";
+import { getNewsData } from "@/lib/daily-news-service";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
+
+export const dynamic = "force-dynamic";
+export const dynamicParams = true;
 
 interface PageProps {
   params: { slug: string };
@@ -12,13 +15,8 @@ const normalizeSlug = (s: string) => s.toLowerCase().replace(/^-+|-+$/g, "");
 
 function getDailyArticle(slug: string) {
   const normalized = normalizeSlug(slug);
-  return dailyNews.articles.find((a) => a.slug === slug || normalizeSlug(a.slug) === normalized);
-}
-
-export async function generateStaticParams() {
-  return dailyNews.articles.map((article) => ({
-    slug: article.slug,
-  }));
+  const { articles } = getNewsData();
+  return articles.find((a) => a.slug === slug || normalizeSlug(a.slug) === normalized);
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
