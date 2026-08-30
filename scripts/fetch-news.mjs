@@ -12,7 +12,7 @@ function createSlug(title) {
     .replace(/[^\w\s-]/g, '')
     .replace(/\s+/g, '-')
     .replace(/--+/g, '-')
-    .trim();
+    .replace(/^-+|-+$/g, '');
 }
 
 async function fetchNews() {

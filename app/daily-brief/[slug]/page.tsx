@@ -8,6 +8,13 @@ interface PageProps {
   params: { slug: string };
 }
 
+const normalizeSlug = (s: string) => s.toLowerCase().replace(/^-+|-+$/g, "");
+
+function getDailyArticle(slug: string) {
+  const normalized = normalizeSlug(slug);
+  return dailyNews.articles.find((a) => a.slug === slug || normalizeSlug(a.slug) === normalized);
+}
+
 export async function generateStaticParams() {
   return dailyNews.articles.map((article) => ({
     slug: article.slug,
@@ -15,7 +22,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const article = dailyNews.articles.find((a) => a.slug === params.slug);
+  const article = getDailyArticle(params.slug);
   if (!article) return { title: "Article Not Found" };
 
   return {
@@ -26,7 +33,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default function DailyArticlePage({ params }: PageProps) {
-  const article = dailyNews.articles.find((a) => a.slug === params.slug);
+  const article = getDailyArticle(params.slug);
 
   if (!article) {
     notFound();
