@@ -27,10 +27,6 @@ export default function Hero() {
             backgroundSize: "60px 60px",
           }}
         />
-
-        {/* Accent line */}
-        <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-gold-500/20 to-transparent" />
-        <div className="absolute top-1/4 right-1/3 w-px h-1/2 bg-gradient-to-b from-transparent via-gold-500/10 to-transparent" />
       </div>
 
       {/* Content */}

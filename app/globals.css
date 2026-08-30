@@ -8,13 +8,15 @@
 
 @layer base {
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: smooth !important;
+    scroll-padding-top: 80px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   body {
     @apply bg-white text-gray-800;
+    -webkit-overflow-scrolling: touch;
   }
 
   ::selection {
