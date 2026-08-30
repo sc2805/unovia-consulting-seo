@@ -17,6 +17,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://unovia.in"),
+  alternates: {
+    canonical: "./",
+  },
   title: {
     default: "UNoviA Consulting — Strategic Financial & Business Advisory",
     template: "%s | UNoviA Consulting",
@@ -31,6 +35,8 @@ export const metadata: Metadata = {
     "financial advisory",
     "tax planning India",
     "GST compliance",
+    "virtual CFO services",
+    "trademark registration India",
     "Kolkata financial advisory",
     "CA firm Kolkata",
     "Unovia Consulting",

@@ -14,7 +14,6 @@ export default function TrustIndicators() {
   useEffect(() => {
     if (!containerRef.current) return;
 
-    // Clear any existing content (handles React strict-mode double mount)
     containerRef.current.innerHTML = "";
 
     const widgetContainer = document.createElement("div");

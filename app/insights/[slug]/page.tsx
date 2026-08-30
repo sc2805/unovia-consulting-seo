@@ -1,10 +1,23 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Clock, Calendar, User, Tag } from "lucide-react";
+import { ArrowRight, Clock, Calendar, User, Tag } from "lucide-react";
 import { getPostBySlug, getAllSlugs } from "@/lib/blog";
 import CTABanner from "@/components/sections/CTABanner";
 import BlogContent from "@/components/blog/BlogContent";
+import Breadcrumbs from "@/components/ui/Breadcrumbs";
+import JsonLd, { articleSchema } from "@/components/seo/JsonLd";
+
+// Category → service page mapping for contextual internal links
+const CATEGORY_TO_SERVICE: Record<string, { label: string; href: string }> = {
+  "Tax Planning": { label: "Tax Consultancy", href: "/services/tax-consultancy" },
+  "GST Advisory": { label: "GST Advisory & Compliance", href: "/services/gst-advisory" },
+  "Wealth Management": { label: "Wealth Management", href: "/services/wealth-management" },
+  "Investment & Wealth": { label: "Wealth Management", href: "/services/wealth-management" },
+  "Economy & Markets": { label: "Wealth Management", href: "/services/wealth-management" },
+  "Business Strategy": { label: "Business Consulting", href: "/services/business-consulting" },
+  "Business Finance": { label: "Virtual CFO Services", href: "/services/virtual-cfo" },
+};
 
 // =============================================================================
 // Static params for all blog slugs
@@ -69,22 +82,26 @@ export default function ArticlePage({
 
   const accentClass =
     categoryAccent[post.category] ?? "from-gold-500 to-gold-600";
+  const relatedService = CATEGORY_TO_SERVICE[post.category];
 
   return (
     <>
+      {/* Article JSON-LD */}
+      <JsonLd data={articleSchema({ title: post.title, excerpt: post.excerpt, slug: post.slug, date: post.date, author: post.author })} />
+
       {/* ── Hero ────────────────────────────────────────────────────────── */}
       <section className="relative pt-32 pb-12 md:pt-40 md:pb-16 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-navy-50/50 to-white" />
 
         <div className="relative container-tight px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
-          {/* Back link */}
-          <Link
-            href="/insights"
-            className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-navy-700 transition-colors mb-8 group"
-          >
-            <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
-            Back to Insights
-          </Link>
+          {/* Breadcrumbs */}
+          <Breadcrumbs
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Insights", href: "/insights" },
+              { label: post.title, href: `/insights/${post.slug}` },
+            ]}
+          />
 
           {/* Category badge */}
           <div className="mb-5">
@@ -170,6 +187,27 @@ export default function ArticlePage({
           </div>
         </div>
       </section>
+
+      {/* Contextual Service CTA */}
+      {relatedService && (
+        <section className="py-12 bg-gray-50/50">
+          <div className="container-tight px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+            <div className="p-6 md:p-8 bg-white border border-gray-100 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div>
+                <p className="text-sm text-gray-500 mb-1">Related Service</p>
+                <p className="text-lg font-bold text-navy-800">Learn more about our {relatedService.label} services</p>
+              </div>
+              <Link
+                href={relatedService.href}
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-navy-800 text-white text-sm font-semibold rounded-lg hover:bg-navy-700 transition-colors flex-shrink-0"
+              >
+                Explore {relatedService.label}
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
 
       <CTABanner
         heading="Have Questions About Your Finances?"

@@ -25,14 +25,14 @@ export default function Logo({ variant = "dark", className = "" }: LogoProps) {
   const accentColor = variant === "light" ? "text-gold-400" : "text-gold-600";
 
   return (
-    <Link href="/" className={`flex items-center gap-2 group ${className}`} id="logo">
+    <Link href="/" className={`flex items-center gap-2.5 group ${className}`} id="logo">
       {USE_IMAGE_LOGO ? (
         <Image
           src={LOGO_PATH}
           alt="Unovia Consulting"
           width={180}
           height={48}
-          className="h-10 w-auto object-contain"
+          className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
           priority
         />
       ) : (

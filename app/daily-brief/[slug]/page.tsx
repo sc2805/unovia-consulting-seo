@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Link from "next/link";
-import { ArrowLeft, ExternalLink, Calendar, Newspaper, Share2 } from "lucide-react";
+import { ExternalLink, Calendar, Newspaper } from "lucide-react";
 import dailyNews from "@/lib/daily-news.json";
+import Breadcrumbs from "@/components/ui/Breadcrumbs";
 
 interface PageProps {
   params: { slug: string };
@@ -35,14 +35,14 @@ export default function DailyArticlePage({ params }: PageProps) {
   return (
     <main className="min-h-screen pt-32 pb-20 bg-white">
       <div className="container-tight px-4">
-        {/* Back Button */}
-        <Link 
-          href="/daily-brief"
-          className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-gold-600 mb-10 transition-colors group"
-        >
-          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-          Back to Daily Brief
-        </Link>
+        {/* Breadcrumbs */}
+        <Breadcrumbs
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Daily Brief", href: "/daily-brief" },
+            { label: article.title.length > 50 ? article.title.substring(0, 50) + "…" : article.title, href: `/daily-brief/${article.slug}` },
+          ]}
+        />
 
         {/* Article Header */}
         <div className="max-w-3xl mx-auto mb-12">

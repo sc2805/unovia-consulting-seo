@@ -20,10 +20,27 @@ export const COMPANY = {
 export const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
-  { label: "Insights", href: "/insights" },
-  { label: "Calculators", href: "/calculators/sip-lumpsum" },
-  { label: "Daily Brief", href: "/daily-brief" },
+  {
+    label: "Services",
+    href: "/services",
+    children: [
+      { label: "Tax Consultancy", href: "/services/tax-consultancy" },
+      { label: "GST Advisory & Compliance", href: "/services/gst-advisory" },
+      { label: "Wealth Management", href: "/services/wealth-management" },
+      { label: "Business Consulting", href: "/services/business-consulting" },
+      { label: "Virtual CFO Services", href: "/services/virtual-cfo" },
+      { label: "Trademark & Copyright", href: "/services/trademark-copyright" },
+    ],
+  },
+  {
+    label: "Resources",
+    href: "/insights",
+    children: [
+      { label: "Insights & Articles", href: "/insights" },
+      { label: "Daily Market Brief", href: "/daily-brief" },
+      { label: "SIP & Lumpsum Calculator", href: "/calculators/sip-lumpsum" },
+    ],
+  },
   { label: "Contact", href: "/contact" },
 ] as const;
 
@@ -122,6 +139,30 @@ export const SERVICES = [
       { step: "Roadmap", desc: "Clear, actionable strategy with milestones and KPIs." },
       { step: "Implementation", desc: "Hands-on support to execute initiatives and manage change." },
       { step: "Scale", desc: "Sustain momentum with ongoing advisory and performance tracking." },
+    ],
+  },
+  {
+    slug: "virtual-cfo",
+    title: "Virtual CFO Services",
+    shortDescription:
+      "On-demand CFO expertise for growing businesses — strategic financial leadership without the overhead of a full-time hire.",
+    description:
+      "Not every business needs a full-time CFO, but every business deserves CFO-level financial leadership. Our Virtual CFO service brings seasoned financial strategists — Chartered Accountants and MBAs with deep operational experience — directly into your leadership team on a flexible, part-time basis. We help founders, promoters, and management teams make data-driven financial decisions, build investor-ready reporting, manage cash flows, and architect the financial infrastructure needed to scale. Whether you're a startup preparing for your first fundraise, an SME optimizing working capital, or a growing company navigating regulatory complexity, our Virtual CFO practice delivers the strategic clarity and financial discipline that drives sustainable growth.",
+    icon: "PieChart",
+    color: "from-cyan-500 to-blue-600",
+    offerings: [
+      "Financial Strategy & Business Planning",
+      "Cash Flow Management & Forecasting",
+      "MIS Reporting & Dashboard Setup",
+      "Fundraising & Investor Readiness",
+      "Budgeting, Variance Analysis & Cost Control",
+      "Regulatory Compliance & Board Reporting",
+    ],
+    process: [
+      { step: "Onboarding", desc: "Deep-dive into your business model, financials, and growth objectives to define engagement scope." },
+      { step: "Foundation", desc: "Set up financial systems, reporting frameworks, and KPI dashboards tailored to your business." },
+      { step: "Execution", desc: "Ongoing strategic financial management — cash flow planning, MIS reviews, and decision support." },
+      { step: "Growth", desc: "Scale financial operations, support fundraising, and prepare for audits and regulatory milestones." },
     ],
   },
   {

@@ -13,8 +13,7 @@ import {
 } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import CTABanner from "@/components/sections/CTABanner";
-import Button from "@/components/ui/Button";
-import { BLOG_POSTS } from "@/lib/blog";
+import { getBlogPosts } from "@/lib/blog";
 
 // =============================================================================
 // Insights Page — Premium knowledge hub with categories, featured articles,
@@ -119,7 +118,7 @@ const CONTENT_CATEGORIES = [
 
 export default function InsightsPage() {
   // Sort posts by date descending
-  const sortedPosts = [...BLOG_POSTS].sort(
+  const sortedPosts = [...getBlogPosts()].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );
 
@@ -131,6 +130,7 @@ export default function InsightsPage() {
       {/* ── Hero ────────────────────────────────────────────────────────── */}
       <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-navy-50/60 via-white to-white" />
+        <div className="absolute inset-0 bg-mesh-light" />
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gold-100/30 rounded-full -translate-y-1/3 translate-x-1/4 blur-3xl" />
         <div className="absolute bottom-0 left-0 w-[350px] h-[350px] bg-navy-100/20 rounded-full translate-y-1/3 -translate-x-1/4 blur-3xl" />
 
@@ -159,11 +159,12 @@ export default function InsightsPage() {
         <div className="container-tight">
           <Link
             href={`/insights/${featuredPost.slug}`}
-            className="group relative grid grid-cols-1 lg:grid-cols-2 gap-8 p-8 md:p-10 bg-navy-800 rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-500"
+            className="group relative grid grid-cols-1 lg:grid-cols-2 gap-8 p-8 md:p-10 bg-navy-800 rounded-2xl overflow-hidden hover:shadow-navy-lg transition-all duration-500"
           >
             {/* Decorative */}
             <div className="absolute top-0 right-0 w-80 h-80 bg-gold-500/5 rounded-full -translate-y-1/2 translate-x-1/3 blur-3xl" />
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-navy-600/30 rounded-full translate-y-1/2 -translate-x-1/4 blur-3xl" />
+            <div className="absolute inset-0 bg-mesh opacity-30" />
 
             <div className="relative z-10">
               <div className="flex items-center gap-3 mb-5">
@@ -257,7 +258,7 @@ export default function InsightsPage() {
             {CONTENT_CATEGORIES.map((cat, i) => (
               <div
                 key={i}
-                className="group bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-xl hover:border-gold-200 transition-all duration-300"
+                className="group bg-white border border-gray-100/80 rounded-2xl overflow-hidden hover:shadow-xl hover:border-gold-200/60 transition-all duration-300"
               >
                 <div
                   className={`h-1.5 bg-gradient-to-r ${cat.color}`}
@@ -303,7 +304,7 @@ export default function InsightsPage() {
                 key={post.slug}
                 href={`/insights/${post.slug}`}
                 id={post.slug}
-                className="group flex flex-col bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-xl hover:border-gold-200 transition-all duration-300 hover:-translate-y-1"
+                className="group flex flex-col bg-white border border-gray-100/80 rounded-2xl overflow-hidden hover:shadow-xl hover:border-gold-200/60 transition-all duration-300 hover:-translate-y-1"
               >
                 {/* Color accent bar */}
                 <div

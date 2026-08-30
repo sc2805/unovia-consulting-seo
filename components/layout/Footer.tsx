@@ -1,25 +1,57 @@
 import Link from "next/link";
 import { Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 import Logo from "@/components/ui/Logo";
-import { COMPANY, NAV_LINKS } from "@/lib/constants";
+import { COMPANY, SERVICES } from "@/lib/constants";
 
 // =============================================================================
-// Footer — Compact, summarized layout
+// Footer — Structured SEO footer with service links, resources, and company info
 // =============================================================================
+
+const RESOURCE_LINKS = [
+  { label: "Insights & Articles", href: "/insights" },
+  { label: "Daily Market Brief", href: "/daily-brief" },
+  { label: "SIP & Lumpsum Calculator", href: "/calculators/sip-lumpsum" },
+];
+
+const COMPANY_LINKS = [
+  { label: "About Us", href: "/about" },
+  { label: "Contact", href: "/contact" },
+];
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
     <footer className="bg-navy-900 text-gray-400" id="footer">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
 
-          {/* Logo + Socials */}
-          <div className="flex flex-col items-start gap-4">
-            <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-white shadow-md">
+          {/* Column 1 — Logo + Socials + Contact */}
+          <div className="sm:col-span-2 lg:col-span-2">
+            <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-white shadow-md mb-5">
               <Logo variant="dark" />
             </div>
+            <p className="text-sm text-gray-500 leading-relaxed mb-5 max-w-sm">
+              Chartered Accountant-led financial advisory — wealth management, tax planning, GST advisory, and business consulting from Kolkata.
+            </p>
+
+            {/* Contact Info */}
+            <div className="space-y-3 text-sm mb-5">
+              <a href={`tel:${COMPANY.phone}`} className="flex items-center gap-2.5 hover:text-gold-400 transition-colors">
+                <Phone className="w-4 h-4 text-gold-500 flex-shrink-0" />
+                {COMPANY.phone}
+              </a>
+              <a href={`mailto:${COMPANY.email}`} className="flex items-center gap-2.5 hover:text-gold-400 transition-colors">
+                <Mail className="w-4 h-4 text-gold-500 flex-shrink-0" />
+                {COMPANY.email}
+              </a>
+              <span className="flex items-center gap-2.5">
+                <MapPin className="w-4 h-4 text-gold-500 flex-shrink-0" />
+                {COMPANY.address}
+              </span>
+            </div>
+
+            {/* Social Links */}
             <div className="flex gap-2">
               <a
                 href={COMPANY.social.linkedin}
@@ -42,42 +74,64 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Nav Links */}
-          <nav className="flex flex-wrap gap-x-6 gap-y-2">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm text-gray-400 hover:text-gold-400 transition-colors duration-200"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
+          {/* Column 2 — Services */}
+          <div>
+            <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4">Services</h3>
+            <ul className="space-y-2.5">
+              {SERVICES.map((service) => (
+                <li key={service.slug}>
+                  <Link
+                    href={`/services/${service.slug}`}
+                    className="text-sm text-gray-400 hover:text-gold-400 transition-colors duration-200"
+                  >
+                    {service.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-          {/* Contact */}
-          <div className="flex flex-col gap-2 text-sm">
-            <a href={`tel:${COMPANY.phone}`} className="flex items-center gap-2 hover:text-gold-400 transition-colors">
-              <Phone className="w-3.5 h-3.5 text-gold-500 flex-shrink-0" />
-              {COMPANY.phone}
-            </a>
-            <a href={`mailto:${COMPANY.email}`} className="flex items-center gap-2 hover:text-gold-400 transition-colors">
-              <Mail className="w-3.5 h-3.5 text-gold-500 flex-shrink-0" />
-              {COMPANY.email}
-            </a>
-            <span className="flex items-center gap-2">
-              <MapPin className="w-3.5 h-3.5 text-gold-500 flex-shrink-0" />
-              {COMPANY.address}
-            </span>
+          {/* Column 3 — Resources */}
+          <div>
+            <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4">Resources</h3>
+            <ul className="space-y-2.5">
+              {RESOURCE_LINKS.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-gray-400 hover:text-gold-400 transition-colors duration-200"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 4 — Company */}
+          <div>
+            <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4">Company</h3>
+            <ul className="space-y-2.5">
+              {COMPANY_LINKS.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-gray-400 hover:text-gold-400 transition-colors duration-200"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-8 pt-6 border-t border-navy-800 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="mt-10 pt-8 border-t border-navy-800 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-gray-500">
             &copy; {currentYear} {COMPANY.name}. All rights reserved.
           </p>
-          <div className="flex gap-5">
+          <div className="flex gap-6">
             <Link href="#" className="text-xs text-gray-500 hover:text-gray-300 transition-colors">Privacy Policy</Link>
             <Link href="#" className="text-xs text-gray-500 hover:text-gray-300 transition-colors">Terms of Service</Link>
           </div>

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* ============================================================
-   Unovia Consulting — Global Styles & Design System
+   Unovia Consulting — Global Styles & Design System v2
    ============================================================ */
 
 @layer base {
@@ -23,7 +23,6 @@
 }
 
 @layer components {
-  /* Gradient text utility */
   .gradient-text {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-navy-800 to-navy-600;
   }
@@ -32,12 +31,10 @@
     @apply bg-clip-text text-transparent bg-gradient-to-r from-gold-500 to-gold-600;
   }
 
-  /* Glass card */
   .glass-card {
     @apply bg-white/80 backdrop-blur-md border border-gray-100 shadow-lg rounded-2xl;
   }
 
-  /* Section wrapper */
   .section-padding {
     @apply py-20 md:py-28 px-4 sm:px-6 lg:px-8;
   }
@@ -46,7 +43,6 @@
     @apply max-w-7xl mx-auto;
   }
 
-  /* Animated underline on hover */
   .hover-underline {
     @apply relative;
   }
@@ -62,7 +58,6 @@
 }
 
 @layer utilities {
-  /* Staggered animation delays for children */
   .stagger-1 { animation-delay: 0.1s; }
   .stagger-2 { animation-delay: 0.2s; }
   .stagger-3 { animation-delay: 0.3s; }
@@ -71,11 +66,34 @@
   .stagger-6 { animation-delay: 0.6s; }
 }
 
+/* Mesh gradient backgrounds */
+.bg-mesh-navy {
+  background-color: #0F2B5B;
+  background-image:
+    radial-gradient(at 0% 0%, rgba(197, 165, 90, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(15, 43, 91, 0.3) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(197, 165, 90, 0.05) 0px, transparent 50%);
+}
+
+.bg-mesh-light {
+  background-color: #ffffff;
+  background-image:
+    radial-gradient(at 100% 0%, rgba(15, 43, 91, 0.03) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(197, 165, 90, 0.05) 0px, transparent 50%);
+}
+
 /* Subtle background patterns */
 .bg-dots {
   background-image: radial-gradient(circle, #0F2B5B 0.5px, transparent 0.5px);
   background-size: 24px 24px;
   opacity: 0.03;
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(15, 43, 91, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 43, 91, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
 }
 
 /* Smooth scroll offset for fixed navbar */
@@ -105,4 +123,63 @@ input[type="number"]::-webkit-outer-spin-button {
 
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-navy-400;
+}
+
+/* Text utilities */
+.text-balance {
+  text-wrap: balance;
+}
+
+.text-pretty {
+  text-wrap: pretty;
+}
+
+/* Animation utilities */
+.animate-in {
+  animation: animateIn 0.6s ease-out forwards;
+}
+
+@keyframes animateIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Focus styles */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-navy-500 focus:ring-offset-2;
+}
+
+/* Gradient borders */
+.gradient-border {
+  position: relative;
+  background: white;
+  border-radius: 1rem;
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(197, 165, 90, 0.3), rgba(15, 43, 91, 0.1));
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+}
+
+/* Glow effects */
+.glow-gold {
+  box-shadow: 0 0 20px rgba(197, 165, 90, 0.15);
+}
+
+.glow-navy {
+  box-shadow: 0 0 30px rgba(15, 43, 91, 0.1);
 }

@@ -3,11 +3,8 @@ import {
   Shield,
   Target,
   Eye,
-  AlertTriangle,
   BarChart2,
   FileText,
-  Layers,
-  CheckCircle,
   Mail,
   TrendingUp,
   Users,
@@ -28,7 +25,6 @@ import {
 import SectionHeading from "@/components/ui/SectionHeading";
 import CTABanner from "@/components/sections/CTABanner";
 import Button from "@/components/ui/Button";
-import { COMPANY } from "@/lib/constants";
 
 // =============================================================================
 // About Page — Premium CA-led Wealth Management & Advisory Firm

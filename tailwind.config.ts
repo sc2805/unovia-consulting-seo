@@ -44,6 +44,9 @@ const config: Config = {
         "slide-in-left": "slideInLeft 0.6s ease-out forwards",
         "slide-in-right": "slideInRight 0.6s ease-out forwards",
         "count-up": "countUp 2s ease-out forwards",
+        "animate-in": "animateIn 0.6s ease-out forwards",
+        "float": "float 6s ease-in-out infinite",
+        "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       },
       keyframes: {
         fadeIn: {
@@ -62,6 +65,18 @@ const config: Config = {
           "0%": { opacity: "0", transform: "translateX(32px)" },
           "100%": { opacity: "1", transform: "translateX(0)" },
         },
+        animateIn: {
+          "0%": { opacity: "0", transform: "translateY(16px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-20px)" },
+        },
+      },
+      backgroundImage: {
+        "mesh-navy": "radial-gradient(at 0% 0%, rgba(197, 165, 90, 0.15) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(15, 43, 91, 0.3) 0px, transparent 50%), radial-gradient(at 50% 50%, rgba(197, 165, 90, 0.05) 0px, transparent 50%)",
+        "mesh-light": "radial-gradient(at 100% 0%, rgba(15, 43, 91, 0.03) 0px, transparent 50%), radial-gradient(at 0% 100%, rgba(197, 165, 90, 0.05) 0px, transparent 50%)",
       },
     },
   },

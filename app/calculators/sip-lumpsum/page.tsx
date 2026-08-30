@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, Calculator, Target, Lightbulb, ArrowRight } from "lucide-react";
+import { Calculator, Target, Lightbulb, ArrowRight } from "lucide-react";
 import InvestmentCalculator from "@/components/calculators/InvestmentCalculator";
 import CTABanner from "@/components/sections/CTABanner";
+import Breadcrumbs from "@/components/ui/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "SIP & Lumpsum Investment Calculator",
@@ -15,16 +16,17 @@ export default function CalculatorPage() {
     <>
       <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden bg-gray-50/50">
         <div className="absolute inset-0 bg-gradient-to-b from-navy-50/50 to-transparent" />
-        
+        <div className="absolute inset-0 bg-mesh-light" />
+
         <div className="relative container-tight px-4 sm:px-6 lg:px-8">
-          <Link
-            href="/services/wealth-management"
-            className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-navy-800 transition-colors mb-6 group"
-          >
-            <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
-            Back to Wealth Management
-          </Link>
-          
+          <Breadcrumbs
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Resources", href: "/insights" },
+              { label: "SIP & Lumpsum Calculator", href: "/calculators/sip-lumpsum" },
+            ]}
+          />
+
           <div className="max-w-3xl mx-auto text-center mb-16">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-gold-50 text-gold-700 text-xs font-semibold rounded-full mb-6 uppercase tracking-wide">
               <Calculator className="w-3.5 h-3.5" />
@@ -43,7 +45,7 @@ export default function CalculatorPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="bg-white p-8 rounded-2xl border border-gray-100">
+            <div className="bg-white p-8 rounded-2xl border border-gray-100/80 hover:shadow-xl transition-all duration-300">
               <div className="w-12 h-12 bg-navy-50 rounded-xl flex items-center justify-center mb-6">
                 <Target className="w-6 h-6 text-navy-700" />
               </div>
@@ -55,7 +57,7 @@ export default function CalculatorPage() {
                 Read about SIP Discipline <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>
-            <div className="bg-white p-8 rounded-2xl border border-gray-100">
+            <div className="bg-white p-8 rounded-2xl border border-gray-100/80 hover:shadow-xl transition-all duration-300">
               <div className="w-12 h-12 bg-gold-50 rounded-xl flex items-center justify-center mb-6">
                 <Lightbulb className="w-6 h-6 text-gold-600" />
               </div>
@@ -71,7 +73,7 @@ export default function CalculatorPage() {
         </div>
       </section>
 
-      <CTABanner 
+      <CTABanner
         heading="Ready to Start Your Investment Journey?"
         subtext="Our wealth management experts can help you design a customized portfolio based on your risk profile and financial goals."
         primaryLabel="Schedule a Free Consultation"

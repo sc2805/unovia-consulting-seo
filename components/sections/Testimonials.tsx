@@ -64,7 +64,7 @@ function TestimonialCard({
       className={`relative flex flex-col h-full p-7 md:p-8 rounded-2xl border transition-all duration-300 group ${
         featured
           ? "bg-navy-800 border-navy-700 text-white hover:shadow-2xl hover:shadow-navy-900/30"
-          : "bg-white border-gray-100 hover:border-gold-200 hover:shadow-xl"
+          : "bg-white border-gray-100 hover:border-gold-200 hover:shadow-xl hover:shadow-navy-800/5"
       }`}
     >
       {/* Quote icon */}
@@ -155,8 +155,11 @@ export default function Testimonials() {
 
   return (
     <>
-      <section className="section-padding bg-gray-50/50" id="testimonials-section">
-        <div className="container-tight">
+      <section className="section-padding bg-mesh-light relative" id="testimonials-section">
+        {/* Subtle background pattern */}
+        <div className="absolute inset-0 bg-grid opacity-40" />
+
+        <div className="container-tight relative">
           <SectionHeading
             eyebrow="Client Testimonials"
             title="Real Results. Real Relationships."

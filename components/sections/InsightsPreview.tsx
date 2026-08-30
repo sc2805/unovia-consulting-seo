@@ -1,19 +1,25 @@
 import Link from "next/link";
 import { ArrowRight, Clock, ArrowUpRight } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
-import { INSIGHTS } from "@/lib/constants";
+import { getBlogPosts } from "@/lib/blog";
 
 // =============================================================================
 // InsightsPreview — Latest articles preview on home page
 // =============================================================================
 
 export default function InsightsPreview() {
-  const featured = INSIGHTS[0];
-  const others = INSIGHTS.slice(1, 4);
+  const blogPosts = getBlogPosts().sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+  const featured = blogPosts[0] || { slug: "", title: "", excerpt: "", category: "", readTime: "" };
+  const others = blogPosts.slice(1, 4);
 
   return (
-    <section className="section-padding bg-gray-50/50" id="insights-preview">
-      <div className="container-tight">
+    <section className="section-padding bg-mesh-light relative" id="insights-preview">
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 bg-grid opacity-40" />
+
+      <div className="container-tight relative">
         <SectionHeading
           eyebrow="Latest Insights"
           title="Insights That Empower Better Financial Decisions"
@@ -24,7 +30,7 @@ export default function InsightsPreview() {
           {/* Featured Article */}
           <Link
             href={`/insights#${featured.slug}`}
-            className="group relative p-8 bg-white rounded-2xl border border-gray-100 hover:border-gold-200 hover:shadow-xl transition-all duration-300 overflow-hidden"
+            className="group relative p-8 bg-white rounded-2xl border border-gray-100 hover:border-gold-200 hover:shadow-xl hover:shadow-navy-800/5 transition-all duration-300 overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-gold-100/50 to-transparent rounded-bl-[100px]" />
             <span className="relative inline-flex items-center gap-1 px-3 py-1 bg-gold-50 text-gold-700 text-xs font-semibold rounded-full mb-4">
@@ -54,7 +60,7 @@ export default function InsightsPreview() {
               <Link
                 key={article.slug}
                 href={`/insights#${article.slug}`}
-                className="group flex gap-5 p-5 bg-white rounded-xl border border-gray-100 hover:border-gold-200 hover:shadow-lg transition-all duration-300"
+                className="group flex gap-5 p-5 bg-white rounded-xl border border-gray-100 hover:border-gold-200 hover:shadow-lg hover:shadow-navy-800/5 transition-all duration-300"
               >
                 <div className="flex-1 min-w-0">
                   <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-gray-100 text-gray-600 text-[10px] font-semibold rounded-full mb-2 uppercase tracking-wide">

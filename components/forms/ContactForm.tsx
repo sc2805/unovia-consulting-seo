@@ -12,6 +12,8 @@ const serviceOptions = [
   "Tax Consultancy",
   "GST Advisory & Compliance",
   "Business Consulting",
+  "Virtual CFO Services",
+  "Trademark & Copyright Registration",
   "Multiple Services",
   "Not Sure — Need Guidance",
 ];

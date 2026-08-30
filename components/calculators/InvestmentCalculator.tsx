@@ -34,7 +34,7 @@ export default function InvestmentCalculator() {
   const [inflationRate, setInflationRate] = useState<number>(6);
 
   const calculateResults = () => {
-    let yearlyData: YearData[] = [];
+    const yearlyData: YearData[] = [];
     
     if (mode === "SIP") {
       let currentSip = monthlyInvestment;
@@ -367,12 +367,12 @@ export default function InvestmentCalculator() {
                   dataKey="value"
                   stroke="none"
                 >
-                  {chartData.map((entry, index) => (
-                    <Cell key={`cell-\${index}`} fill={entry.color} />
+                  {chartData.map((entry) => (
+                    <Cell key={`cell-${entry.color}`} fill={entry.color} />
                   ))}
                 </Pie>
                 <Tooltip 
-                  formatter={(value: any) => formatCurrency(Number(value))}
+                  formatter={(value: unknown) => formatCurrency(Number(value))}
                   contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
                 />
               </PieChart>
@@ -408,7 +408,7 @@ export default function InvestmentCalculator() {
               
               {adjustForInflation && (
                 <div className="flex justify-between items-center pt-2">
-                  <span className="text-sm font-bold text-gray-600">Real Value (Today's Value)</span>
+                   <span className="text-sm font-bold text-gray-600">Real Value (Today&apos;s Value)</span>
                   <span className="text-lg font-bold text-emerald-600">{formatCurrency(realValue)}</span>
                 </div>
               )}

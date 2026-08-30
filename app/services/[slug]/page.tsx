@@ -1,16 +1,29 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, CheckCircle2, TrendingUp, FileText, Shield, Briefcase, Stamp } from "lucide-react";
+import { ArrowRight, CheckCircle2, TrendingUp, FileText, Shield, Briefcase, Stamp, PieChart, Clock } from "lucide-react";
 import Button from "@/components/ui/Button";
 import CTABanner from "@/components/sections/CTABanner";
+import Breadcrumbs from "@/components/ui/Breadcrumbs";
+import JsonLd, { serviceSchema } from "@/components/seo/JsonLd";
 import { SERVICES } from "@/lib/constants";
+import { getBlogPosts } from "@/lib/blog";
 import { notFound } from "next/navigation";
 
 // =============================================================================
 // Service Detail Page — Dynamic route for each service
 // =============================================================================
 
-const iconMap = { TrendingUp, FileText, Shield, Briefcase, Stamp };
+const iconMap = { TrendingUp, FileText, Shield, Briefcase, Stamp, PieChart };
+
+// Category-to-service slug mapping for related insights
+const CATEGORY_SERVICE_MAP: Record<string, string[]> = {
+  "wealth-management": ["Investment & Wealth", "Wealth Management", "Economy & Markets"],
+  "tax-consultancy": ["Tax Planning"],
+  "gst-advisory": ["GST Advisory"],
+  "business-consulting": ["Business Strategy"],
+  "virtual-cfo": ["Business Strategy", "Economy & Markets"],
+  "trademark-copyright": [],
+};
 
 export async function generateStaticParams() {
   return SERVICES.map((service) => ({ slug: service.slug }));
@@ -25,7 +38,7 @@ export async function generateMetadata({
   const service = SERVICES.find((s) => s.slug === slug);
   if (!service) return {};
   return {
-    title: service.title,
+    title: `${service.title} Services — Unovia Consulting Kolkata`,
     description: service.description,
   };
 }
@@ -43,23 +56,34 @@ export default async function ServiceDetailPage({
   const serviceIndex = SERVICES.findIndex((s) => s.slug === slug);
   const nextService = SERVICES[(serviceIndex + 1) % SERVICES.length];
 
+  // Get related blog posts based on category mapping
+  const relatedCategories = CATEGORY_SERVICE_MAP[slug] || [];
+  const relatedPosts = getBlogPosts()
+    .filter((post) => relatedCategories.includes(post.category))
+    .slice(0, 3);
+
   return (
     <>
+      {/* JSON-LD Service Schema */}
+      <JsonLd data={serviceSchema({ title: service.title, description: service.description, slug: service.slug })} />
+
       {/* Hero */}
       <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-navy-50/50 to-white" />
+        <div className="absolute inset-0 bg-mesh-light" />
         <div className="relative container-tight px-4 sm:px-6 lg:px-8">
-          <Link
-            href="/services"
-            className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-navy-800 transition-colors mb-6 group"
-          >
-            <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
-            All Services
-          </Link>
+          {/* Breadcrumbs */}
+          <Breadcrumbs
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Services", href: "/services" },
+              { label: service.title, href: `/services/${slug}` },
+            ]}
+          />
 
           <div className="flex flex-col md:flex-row md:items-start gap-6">
             <div
-              className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center flex-shrink-0`}
+              className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center flex-shrink-0 shadow-lg`}
             >
               <Icon className="w-8 h-8 text-white" strokeWidth={1.5} />
             </div>
@@ -86,7 +110,7 @@ export default async function ServiceDetailPage({
                 {service.offerings.map((offering, index) => (
                   <div
                     key={index}
-                    className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl hover:bg-navy-50 transition-colors duration-300"
+                    className="flex items-start gap-3 p-4 bg-gray-50/80 border border-gray-100/80 rounded-xl hover:bg-navy-50 hover:border-gold-200/60 transition-all duration-300"
                   >
                     <CheckCircle2 className="w-5 h-5 text-gold-500 mt-0.5 flex-shrink-0" />
                     <span className="text-sm text-gray-700 font-medium">{offering}</span>
@@ -129,7 +153,7 @@ export default async function ServiceDetailPage({
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {service.process.map((step, index) => (
               <div key={index} className="relative">
-                <div className="p-6 bg-white border border-gray-100 rounded-2xl hover:shadow-lg hover:border-gold-200 transition-all duration-300 h-full">
+                <div className="p-6 bg-white border border-gray-100/80 rounded-2xl hover:shadow-xl hover:border-gold-200/60 transition-all duration-300 h-full">
                   <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-navy-800 text-white text-sm font-bold mb-4">
                     {String(index + 1).padStart(2, "0")}
                   </span>
@@ -161,11 +185,52 @@ export default async function ServiceDetailPage({
                 href="/calculators/sip-lumpsum"
                 variant="primary"
                 size="md"
-                className="bg-gold-500 hover:bg-gold-600 text-navy-900 w-full md:w-auto justify-center flex-shrink-0 border-none"
+                className="bg-gold-500 hover:bg-gold-600 text-navy-900 w-full md:w-auto justify-center flex-shrink-0 shadow-gold"
               >
                 Try the Calculator
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Related Insights */}
+      {relatedPosts.length > 0 && (
+        <section className="section-padding bg-white">
+          <div className="container-tight">
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="text-2xl font-bold text-navy-800">Related Insights</h2>
+              <Link
+                href="/insights"
+                className="text-sm font-semibold text-navy-700 hover:text-gold-600 transition-colors inline-flex items-center gap-1"
+              >
+                All Articles
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {relatedPosts.map((post) => (
+                <Link
+                  key={post.slug}
+                  href={`/insights/${post.slug}`}
+                  className="group block p-6 bg-gray-50 border border-gray-100 rounded-2xl hover:shadow-lg hover:border-gold-200 transition-all duration-300 hover:-translate-y-0.5"
+                >
+                  <span className="inline-block text-xs font-bold uppercase tracking-wider text-gold-600 mb-3">
+                    {post.category}
+                  </span>
+                  <h3 className="text-base font-bold text-navy-800 mb-2 group-hover:text-navy-700 transition-colors line-clamp-2">
+                    {post.title}
+                  </h3>
+                  <p className="text-sm text-gray-500 leading-relaxed mb-3 line-clamp-2">
+                    {post.excerpt}
+                  </p>
+                  <span className="flex items-center gap-1.5 text-xs text-gray-400">
+                    <Clock className="w-3.5 h-3.5" />
+                    {post.readTime}
+                  </span>
+                </Link>
+              ))}
             </div>
           </div>
         </section>

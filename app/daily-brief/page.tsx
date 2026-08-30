@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function DailyBriefPage() {
   const { lastUpdated, articles } = dailyNews;
-  
+
   const formatDate = (dateStr: string) => {
     return new Date(dateStr).toLocaleDateString("en-IN", {
       day: "numeric",
@@ -46,9 +46,9 @@ export default function DailyBriefPage() {
         {/* News Grid */}
         <div className="grid grid-cols-1 gap-6">
           {articles.map((article, index) => (
-            <article 
-              key={index} 
-              className="group bg-white p-6 rounded-2xl border border-gray-100 hover:border-gold-200 hover:shadow-xl transition-all duration-300"
+            <article
+              key={index}
+              className="group bg-white p-6 rounded-2xl border border-gray-100/80 hover:border-gold-200/60 hover:shadow-xl transition-all duration-300"
             >
               <div className="flex flex-col md:flex-row gap-6">
                 <div className="flex-1">
@@ -61,18 +61,18 @@ export default function DailyBriefPage() {
                       {new Date(article.pubDate).toLocaleDateString("en-IN", { day: "numeric", month: "short" })}
                     </span>
                   </div>
-                  
+
                   <Link href={`/daily-brief/${article.slug}`}>
                     <h3 className="text-xl font-bold text-navy-800 mb-3 group-hover:text-gold-600 transition-colors leading-snug">
                       {article.title}
                     </h3>
                   </Link>
-                  
+
                   <p className="text-gray-500 text-sm leading-relaxed mb-4 line-clamp-2">
                     {article.excerpt}
                   </p>
-                  
-                  <Link 
+
+                  <Link
                     href={`/daily-brief/${article.slug}`}
                     className="inline-flex items-center gap-1.5 text-sm font-bold text-navy-800 hover:text-gold-600 transition-colors"
                   >
@@ -80,7 +80,7 @@ export default function DailyBriefPage() {
                     <ExternalLink className="w-3.5 h-3.5" />
                   </Link>
                 </div>
-                
+
                 {/* Visual accent */}
                 <div className="hidden md:flex items-center justify-center w-24 bg-gray-50 rounded-xl group-hover:bg-navy-50 transition-colors">
                   <Newspaper className="w-8 h-8 text-navy-200 group-hover:text-navy-400 transition-colors" />

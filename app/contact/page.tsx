@@ -46,6 +46,7 @@ export default function ContactPage() {
       {/* Hero */}
       <section className="relative pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-navy-50/50 to-white" />
+        <div className="absolute inset-0 bg-mesh-light" />
         <div className="relative container-tight px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <span className="inline-block text-xs font-bold tracking-[0.2em] uppercase text-gold-600 mb-4">
@@ -71,7 +72,7 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-16">
             {/* Form */}
             <div className="lg:col-span-3 order-2 lg:order-1">
-              <div className="p-6 md:p-8 bg-white border border-gray-100 rounded-2xl shadow-sm">
+              <div className="p-6 md:p-8 bg-white border border-gray-100/80 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300">
                 <h2 className="text-xl font-bold text-navy-800 mb-1">Send Us a Message</h2>
                 <p className="text-sm text-gray-500 mb-6">
                   Fill out the form below and our team will get back to you within 24 hours.
@@ -88,7 +89,7 @@ export default function ContactPage() {
                   return (
                     <div
                       key={index}
-                      className="flex items-start gap-4 p-5 bg-gray-50 rounded-xl hover:bg-navy-50 transition-colors duration-300"
+                      className="flex items-start gap-4 p-5 bg-gray-50/80 border border-gray-100/80 rounded-xl hover:bg-navy-50 hover:border-gold-200/60 transition-all duration-300"
                     >
                       <div className="w-10 h-10 rounded-lg bg-navy-800 flex items-center justify-center flex-shrink-0">
                         <Icon className="w-5 h-5 text-gold-400" />
@@ -116,7 +117,7 @@ export default function ContactPage() {
               </div>
 
               {/* Map placeholder */}
-              <div className="aspect-[4/3] bg-gray-100 rounded-2xl flex items-center justify-center border border-gray-200 overflow-hidden">
+              <div className="aspect-[4/3] bg-gray-100 rounded-2xl flex items-center justify-center border border-gray-200/80 overflow-hidden">
                 <div className="text-center p-6">
                   <MapPin className="w-8 h-8 text-gray-300 mx-auto mb-3" />
                   <p className="text-sm text-gray-400 font-medium">

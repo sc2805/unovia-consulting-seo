@@ -14,24 +14,28 @@ export default function Hero() {
       {/* Decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Abstract circles */}
-        <div className="absolute -top-24 -right-24 w-96 h-96 bg-gold-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-navy-600/20 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/3 w-72 h-72 bg-gold-500/3 rounded-full blur-3xl" />
+        <div className="absolute -top-24 -right-24 w-[500px] h-[500px] bg-gold-500/5 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-navy-600/20 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/3 w-80 h-80 bg-gold-500/3 rounded-full blur-3xl" />
 
         {/* Grid pattern */}
         <div
-          className="absolute inset-0 opacity-[0.02]"
+          className="absolute inset-0 opacity-[0.03]"
           style={{
             backgroundImage:
               "linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)",
             backgroundSize: "60px 60px",
           }}
         />
+
+        {/* Accent line */}
+        <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-gold-500/20 to-transparent" />
+        <div className="absolute top-1/4 right-1/3 w-px h-1/2 bg-gradient-to-b from-transparent via-gold-500/10 to-transparent" />
       </div>
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
-        <div className="max-w-3xl">
+        <div className="max-w-4xl">
           {/* Eyebrow */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/5 border border-white/10 rounded-full mb-8 animate-fade-in" style={{ marginTop: "2mm" }}>
             <div className="w-1.5 h-1.5 bg-gold-500 rounded-full animate-pulse" />
