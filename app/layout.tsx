@@ -4,7 +4,6 @@ import { Analytics } from "@vercel/analytics/next";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import WhatsAppFloat from "@/components/ui/WhatsAppFloat";
-import AIQueryModal from "@/components/ai/AIQueryModal";
 import "./globals.css";
 
 // =============================================================================
@@ -75,7 +74,6 @@ export default function RootLayout({
         <main>{children}</main>
         <Footer />
         <WhatsAppFloat />
-        <AIQueryModal />
         <Analytics />
       </body>
     </html>

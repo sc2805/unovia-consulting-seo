@@ -14,7 +14,6 @@ import {
 import SectionHeading from "@/components/ui/SectionHeading";
 import CTABanner from "@/components/sections/CTABanner";
 import { getBlogPosts } from "@/lib/blog";
-import AIQuerySection from "@/components/ai/AIQuerySection";
 
 // =============================================================================
 // Insights Page — Premium knowledge hub with categories, featured articles,
@@ -154,9 +153,6 @@ export default function InsightsPage() {
           </div>
         </div>
       </section>
-
-      {/* ── AI Query Section ──────────────────────────────────────────────── */}
-      <AIQuerySection />
 
       {/* ── Featured Article ─────────────────────────────────────────────── */}
       <section className="section-padding bg-white pt-0" id="featured-insight">
