@@ -1,8 +1,10 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ExternalLink, Calendar, Newspaper } from "lucide-react";
+import { ExternalLink, Calendar, Newspaper, ArrowLeft } from "lucide-react";
+import Link from "next/link";
 import { getNewsData } from "@/lib/daily-news-service";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
+import BlogContent from "@/components/blog/BlogContent";
 
 export const dynamic = "force-dynamic";
 export const dynamicParams = true;
@@ -31,7 +33,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!article) return { title: "Article Not Found" };
 
   return {
-    title: article.title,
+    title: `${article.title} | Unovia Daily Brief`,
     description: article.excerpt,
     openGraph: article.image ? { images: [article.image] } : undefined,
   };
@@ -45,81 +47,96 @@ export default function DailyArticlePage({ params }: PageProps) {
   }
 
   return (
-    <main className="min-h-screen pt-32 pb-20 bg-white">
-      <div className="container-tight px-4">
-        {/* Breadcrumbs */}
-        <Breadcrumbs
-          items={[
-            { label: "Home", href: "/" },
-            { label: "Daily Brief", href: "/daily-brief" },
-            { label: article.title.length > 50 ? article.title.substring(0, 50) + "…" : article.title, href: `/daily-brief/${article.slug}` },
-          ]}
-        />
+    <main className="min-h-screen pt-32 pb-24 bg-slate-50/50">
+      <div className="container-tight px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+        {/* Back Link & Breadcrumbs */}
+        <div className="mb-8 flex items-center justify-between">
+          <Breadcrumbs
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Daily Brief", href: "/daily-brief" },
+              { label: article.title.substring(0, 40) + "…", href: `/daily-brief/${article.slug}` },
+            ]}
+          />
+          <Link
+            href="/daily-brief"
+            className="hidden sm:inline-flex items-center gap-1.5 text-xs font-bold text-navy-800 hover:text-gold-600 transition-colors"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+            Back to Briefs
+          </Link>
+        </div>
 
-        {/* Article Header */}
-        <div className="max-w-3xl mx-auto mb-12">
+        {/* Article Container Card */}
+        <article className="bg-white border border-gray-200/80 rounded-3xl p-6 sm:p-10 md:p-12 shadow-xl">
+          {/* Source & Date Badge */}
           <div className="flex items-center gap-3 mb-6">
-            <span className="px-3 py-1 bg-navy-800 text-gold-400 text-[10px] font-bold uppercase tracking-wider rounded-lg">
+            <span className="px-3.5 py-1 bg-navy-900 text-gold-400 text-xs font-extrabold uppercase tracking-wider rounded-lg shadow-sm">
               {article.source}
             </span>
-            <span className="flex items-center gap-1.5 text-xs text-gray-400 font-medium">
-              <Calendar className="w-4 h-4" />
-              {new Date(article.pubDate).toLocaleDateString("en-IN", { 
-                day: "numeric", 
-                month: "long", 
-                year: "numeric" 
+            <span className="flex items-center gap-1.5 text-xs font-medium text-gray-500">
+              <Calendar className="w-4 h-4 text-gold-600" />
+              {new Date(article.pubDate).toLocaleDateString("en-IN", {
+                day: "numeric",
+                month: "long",
+                year: "numeric",
               })}
             </span>
           </div>
 
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-navy-800 leading-tight mb-8">
+          {/* Title */}
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-navy-900 leading-tight tracking-tight mb-8">
             {article.title}
           </h1>
 
           {/* Featured Image if available */}
           {article.image && (
-            <div className="relative aspect-video w-full rounded-2xl overflow-hidden mb-12 shadow-2xl">
-              <img 
-                src={article.image} 
+            <div className="relative aspect-video w-full rounded-2xl overflow-hidden mb-10 shadow-2xl border border-gray-100">
+              <img
+                src={article.image}
                 alt={article.title}
                 className="object-cover w-full h-full"
               />
             </div>
           )}
 
-          {/* Article Content */}
-          <div className="prose prose-lg max-w-none text-gray-600 leading-relaxed mb-12">
-            <p className="text-xl font-medium text-navy-700/80 mb-6 italic border-l-4 border-gold-500 pl-6">
-              {article.excerpt}
-            </p>
-            <div className="whitespace-pre-wrap">
-              {article.content}
+          {/* Excerpt callout */}
+          {article.excerpt && (
+            <div className="p-6 mb-8 bg-gold-50/70 border-l-4 border-gold-500 rounded-r-2xl">
+              <p className="text-lg font-medium text-navy-900 leading-relaxed italic">
+                &ldquo;{article.excerpt}&rdquo;
+              </p>
             </div>
+          )}
+
+          {/* Main Article Body using rich BlogContent */}
+          <div className="mb-12">
+            <BlogContent content={article.content} />
           </div>
 
           {/* Source Footer */}
-          <div className="pt-10 border-t border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+          <div className="pt-8 border-t border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-6 bg-slate-50 p-6 rounded-2xl">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-navy-50 flex items-center justify-center">
-                <Newspaper className="w-6 h-6 text-navy-700" />
+              <div className="w-12 h-12 rounded-2xl bg-navy-900 flex items-center justify-center text-gold-400 shadow-md">
+                <Newspaper className="w-6 h-6" />
               </div>
               <div>
-                <p className="text-xs text-gray-400 uppercase font-bold tracking-widest">Source</p>
-                <p className="text-sm font-bold text-navy-800">{article.source} Markets</p>
+                <p className="text-[10px] text-gray-400 uppercase font-extrabold tracking-widest">Original Feed Source</p>
+                <p className="text-sm font-bold text-navy-900">{article.source} Markets</p>
               </div>
             </div>
-            
-            <a 
+
+            <a
               href={article.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gray-50 text-navy-800 text-sm font-bold rounded-xl hover:bg-gold-500 hover:text-navy-900 transition-all duration-300"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-navy-900 text-gold-400 hover:text-white hover:bg-navy-800 text-sm font-bold rounded-xl transition-all duration-300 shadow-lg"
             >
-              Read full coverage on ET
+              Read full story on ET
               <ExternalLink className="w-4 h-4" />
             </a>
           </div>
-        </div>
+        </article>
       </div>
     </main>
   );
