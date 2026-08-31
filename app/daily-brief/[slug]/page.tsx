@@ -7,6 +7,13 @@ import Breadcrumbs from "@/components/ui/Breadcrumbs";
 export const dynamic = "force-dynamic";
 export const dynamicParams = true;
 
+export async function generateStaticParams() {
+  const { articles } = getNewsData();
+  return articles.map((article) => ({
+    slug: article.slug,
+  }));
+}
+
 interface PageProps {
   params: { slug: string };
 }

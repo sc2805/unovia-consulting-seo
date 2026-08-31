@@ -1,7 +1,9 @@
 import { MetadataRoute } from "next";
 import { SERVICES } from "@/lib/constants";
 import { getBlogPosts } from "@/lib/blog";
-import dailyNews from "@/lib/daily-news.json";
+import { getNewsData } from "@/lib/daily-news-service";
+
+export const revalidate = 3600; // Revalidate sitemap every hour
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://unovia.in";
@@ -40,12 +42,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   // Daily brief article pages
-  const dailyBriefRoutes = dailyNews.articles.map((article) => ({
-    url: `${baseUrl}/daily-brief/${article.slug}`,
-    lastModified: new Date(dailyNews.lastUpdated),
-    changeFrequency: "daily" as const,
-    priority: 0.3,
-  }));
+  const { lastUpdated, articles } = getNewsData();
+  const fallbackDate = lastUpdated ? new Date(lastUpdated) : lastModified;
+
+  const seenSlugs = new Set<string>();
+
+  const dailyBriefRoutes = articles
+    .filter((article) => {
+      if (!article.slug || seenSlugs.has(article.slug)) return false;
+      seenSlugs.add(article.slug);
+      return true;
+    })
+    .map((article) => {
+      const pubDate = article.pubDate ? new Date(article.pubDate) : fallbackDate;
+      const articleDate = isNaN(pubDate.getTime()) ? fallbackDate : pubDate;
+
+      return {
+        url: `${baseUrl}/daily-brief/${article.slug}`,
+        lastModified: articleDate,
+        changeFrequency: "daily" as const,
+        priority: 0.4,
+      };
+    });
 
   return [...staticRoutes, ...serviceRoutes, ...blogRoutes, ...dailyBriefRoutes];
 }

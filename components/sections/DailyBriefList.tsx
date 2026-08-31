@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Newspaper, ExternalLink, Calendar, RefreshCw } from "lucide-react";
 import { NewsArticle } from "@/lib/daily-news-service";
@@ -15,6 +15,21 @@ export default function DailyBriefList({ initialArticles, initialLastUpdated }: 
   const [lastUpdated, setLastUpdated] = useState<string>(initialLastUpdated);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Sync with localStorage on client mount if available
+  useEffect(() => {
+    const saved = localStorage.getItem("unovia_daily_news");
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setArticles(parsed);
+        }
+      } catch {
+        // ignore invalid JSON
+      }
+    }
+  }, []);
 
   const formatDate = (dateStr: string) => {
     try {
@@ -43,6 +58,7 @@ export default function DailyBriefList({ initialArticles, initialLastUpdated }: 
       const data = await response.json();
       setArticles(data.articles);
       setLastUpdated(data.lastUpdated);
+      localStorage.setItem("unovia_daily_news", JSON.stringify(data.articles));
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Failed to refresh feed");
     } finally {

@@ -1,10 +1,18 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { getNewsData, refreshNewsFeed } from "@/lib/daily-news-service";
 
 export const dynamic = "force-dynamic";
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
+    const { searchParams } = new URL(request.url);
+    const shouldRefresh = searchParams.get("refresh") === "true";
+
+    if (shouldRefresh) {
+      const freshData = await refreshNewsFeed();
+      return NextResponse.json(freshData);
+    }
+
     const data = getNewsData();
     return NextResponse.json(data);
   } catch (error: unknown) {

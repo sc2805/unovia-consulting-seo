@@ -5,6 +5,7 @@
   "description": "Unovia Consulting — Premium Financial & Business Consultancy Website",
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node scripts/fetch-news.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
