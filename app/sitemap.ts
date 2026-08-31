@@ -18,6 +18,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/contact", priority: 0.7, changeFrequency: "monthly" as const },
     { path: "/daily-brief", priority: 0.6, changeFrequency: "daily" as const },
     { path: "/calculators/sip-lumpsum", priority: 0.6, changeFrequency: "monthly" as const },
+    { path: "/privacy-policy", priority: 0.3, changeFrequency: "monthly" as const },
+    { path: "/terms-of-use", priority: 0.3, changeFrequency: "monthly" as const },
   ].map((route) => ({
     url: `${baseUrl}${route.path}`,
     lastModified,

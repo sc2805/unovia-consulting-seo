@@ -3,13 +3,13 @@
 // =============================================================================
 
 export const COMPANY = {
-  name: "UNoviA Consulting",
+  name: "Unovia Consulting",
   tagline: "Strategic Advisory. Lasting Impact.",
   description:
     "Premium financial and business consultancy powered by an experienced team of Chartered Accountants (CAs) and MBAs, delivering expert wealth management, tax planning, GST advisory, and strategic business consulting.",
   phone: "+91 72786 71467",
   email: "connect@unovia.in",
-  address: "Kolkata, West Bengal, India",
+  address: "359 Beni Master Lane, Kolkata – 700061, West Bengal, India",
   founded: "2025",
   social: {
     linkedin: "https://www.linkedin.com/in/unovia-consulting/",

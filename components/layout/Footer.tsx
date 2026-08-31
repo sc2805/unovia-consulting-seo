@@ -4,7 +4,7 @@ import Logo from "@/components/ui/Logo";
 import { COMPANY, SERVICES } from "@/lib/constants";
 
 // =============================================================================
-// Footer — Structured SEO footer with service links, resources, and company info
+// Footer — Structured SEO footer with service links, resources, and legal links
 // =============================================================================
 
 const RESOURCE_LINKS = [
@@ -16,6 +16,8 @@ const RESOURCE_LINKS = [
 const COMPANY_LINKS = [
   { label: "About Us", href: "/about" },
   { label: "Contact", href: "/contact" },
+  { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "Terms of Use", href: "/terms-of-use" },
 ];
 
 export default function Footer() {
@@ -108,9 +110,9 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 4 — Company */}
+          {/* Column 4 — Company & Legal */}
           <div>
-            <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4">Company</h3>
+            <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4">Company & Legal</h3>
             <ul className="space-y-2.5">
               {COMPANY_LINKS.map((link) => (
                 <li key={link.href}>
@@ -132,8 +134,8 @@ export default function Footer() {
             &copy; {currentYear} {COMPANY.name}. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <Link href="#" className="text-xs text-gray-500 hover:text-gray-300 transition-colors">Privacy Policy</Link>
-            <Link href="#" className="text-xs text-gray-500 hover:text-gray-300 transition-colors">Terms of Service</Link>
+            <Link href="/privacy-policy" className="text-xs text-gray-500 hover:text-gold-400 transition-colors">Privacy Policy</Link>
+            <Link href="/terms-of-use" className="text-xs text-gray-500 hover:text-gold-400 transition-colors">Terms of Use</Link>
           </div>
         </div>
       </div>
