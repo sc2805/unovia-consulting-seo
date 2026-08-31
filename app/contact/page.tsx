@@ -1,17 +1,24 @@
 import type { Metadata } from "next";
-import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, ExternalLink } from "lucide-react";
 import ContactForm from "@/components/forms/ContactForm";
 import { COMPANY } from "@/lib/constants";
 
 // =============================================================================
-// Contact Page — Contact form + company info
+// Contact Page — Contact form + company info + Google Maps
 // =============================================================================
 
 export const metadata: Metadata = {
   title: "Contact Us",
   description:
-    "Get in touch with Unovia Consulting. Book a consultation for wealth management, tax planning, GST advisory, or business consulting.",
+    "Get in touch with Unovia Consulting. Book a consultation for wealth management, tax planning, GST advisory, or business consulting in Kolkata.",
+  alternates: {
+    canonical: "https://unovia.in/contact",
+  },
 };
+
+const mapQuery = encodeURIComponent(`${COMPANY.address}`);
+const googleMapsDirectionsUrl = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`;
+const googleMapsEmbedUrl = `https://maps.google.com/maps?q=${mapQuery}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
 
 const contactDetails = [
   {
@@ -28,9 +35,9 @@ const contactDetails = [
   },
   {
     icon: MapPin,
-    label: "Office",
+    label: "Office Address",
     value: COMPANY.address,
-    href: "#",
+    href: googleMapsDirectionsUrl,
   },
   {
     icon: Clock,
@@ -59,8 +66,7 @@ export default function ContactPage() {
               </span>
             </h1>
             <p className="text-lg text-gray-500 leading-relaxed max-w-xl mx-auto">
-              Whether you have a specific question or want to explore how we can help — we&apos;re
-              here for you.
+              Whether you have a specific tax question, wealth management query, or want to explore our business advisory services — we&apos;re here for you.
             </p>
           </div>
         </div>
@@ -81,9 +87,9 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Contact Info */}
-            <div className="lg:col-span-2 order-1 lg:order-2">
-              <div className="space-y-4 mb-8">
+            {/* Contact Info & Interactive Map */}
+            <div className="lg:col-span-2 order-1 lg:order-2 space-y-6">
+              <div className="space-y-4">
                 {contactDetails.map((detail, index) => {
                   const Icon = detail.icon;
                   return (
@@ -94,16 +100,21 @@ export default function ContactPage() {
                       <div className="w-10 h-10 rounded-lg bg-navy-800 flex items-center justify-center flex-shrink-0">
                         <Icon className="w-5 h-5 text-gold-400" />
                       </div>
-                      <div>
+                      <div className="flex-1">
                         <span className="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-0.5">
                           {detail.label}
                         </span>
                         {detail.href !== "#" ? (
                           <a
                             href={detail.href}
-                            className="text-sm text-navy-800 font-medium hover:text-gold-600 transition-colors"
+                            target={detail.href.startsWith("http") ? "_blank" : "_self"}
+                            rel="noopener noreferrer"
+                            className="text-sm text-navy-800 font-medium hover:text-gold-600 transition-colors flex items-center gap-1.5"
                           >
                             {detail.value}
+                            {detail.href.startsWith("http") && (
+                              <ExternalLink className="w-3.5 h-3.5 text-gold-500 flex-shrink-0" />
+                            )}
                           </a>
                         ) : (
                           <span className="text-sm text-navy-800 font-medium">
@@ -116,14 +127,38 @@ export default function ContactPage() {
                 })}
               </div>
 
-              {/* Map placeholder */}
-              <div className="aspect-[4/3] bg-gray-100 rounded-2xl flex items-center justify-center border border-gray-200/80 overflow-hidden">
-                <div className="text-center p-6">
-                  <MapPin className="w-8 h-8 text-gray-300 mx-auto mb-3" />
-                  <p className="text-sm text-gray-400 font-medium">
-                    Interactive Map
-                  </p>
-                  <p className="text-xs text-gray-300 mt-1">Coming Soon</p>
+              {/* Embedded Google Map */}
+              <div className="bg-white rounded-2xl border border-gray-200/80 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                <div className="p-4 bg-navy-900 text-white flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <MapPin className="w-4 h-4 text-gold-400" />
+                    <span className="text-xs font-bold uppercase tracking-wider text-white">
+                      Kolkata Office Location
+                    </span>
+                  </div>
+                  <a
+                    href={googleMapsDirectionsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs font-semibold text-gold-400 hover:text-white flex items-center gap-1 transition-colors"
+                  >
+                    Get Directions
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                </div>
+
+                <div className="aspect-[4/3] relative w-full bg-slate-100">
+                  <iframe
+                    title="Unovia Consulting Kolkata Office Location Map"
+                    src={googleMapsEmbedUrl}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen={false}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="w-full h-full"
+                  />
                 </div>
               </div>
             </div>
