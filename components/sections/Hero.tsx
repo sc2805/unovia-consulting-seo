@@ -1,4 +1,4 @@
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown, TrendingUp } from "lucide-react";
 import Button from "@/components/ui/Button";
 
 // =============================================================================
@@ -58,12 +58,19 @@ export default function Hero() {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up stagger-3 opacity-0">
-            <Button href="/contact" variant="secondary" size="lg" id="hero-cta-primary">
+            <a
+              href="https://partners.creso.in/mfd/unovia"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-400 hover:to-gold-500 text-navy-950 font-extrabold text-sm rounded-xl shadow-xl hover:scale-105 transition-all"
+              id="hero-cta-investment"
+            >
+              Start Your Investment Journey
+              <TrendingUp className="w-4 h-4 text-navy-950" />
+            </a>
+            <Button href="/contact" variant="outline" size="lg" className="border-white/20 text-white hover:bg-white/10 hover:text-white" id="hero-cta-primary">
               Book a Consultation
               <ArrowRight className="w-5 h-5" />
-            </Button>
-            <Button href="/services" variant="outline" size="lg" className="border-white/20 text-white hover:bg-white/10 hover:text-white" id="hero-cta-secondary">
-              Explore Our Services
             </Button>
           </div>
         </div>

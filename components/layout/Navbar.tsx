@@ -7,7 +7,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, ArrowRight, ChevronDown } from "lucide-react";
+import { Menu, X, ArrowRight, ChevronDown, TrendingUp } from "lucide-react";
 import Logo from "@/components/ui/Logo";
 import { NAV_LINKS } from "@/lib/constants";
 
@@ -152,13 +152,23 @@ export default function Navbar() {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-3">
+            <a
+              href="https://partners.creso.in/mfd/unovia"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-gold-500 to-gold-600 text-navy-950 text-xs font-extrabold rounded-lg hover:from-gold-400 hover:to-gold-500 transition-all duration-300 shadow-md shadow-gold-500/20 hover:-translate-y-0.5"
+              id="nav-cta-investment"
+            >
+              <TrendingUp className="w-3.5 h-3.5 text-navy-950" />
+              Start Your Investment Journey
+            </a>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-navy-800 text-white text-sm font-semibold rounded-lg hover:bg-navy-700 transition-all duration-300 shadow-md shadow-navy-800/20 hover:shadow-lg hover:shadow-navy-800/25 hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-navy-800 text-white text-xs font-semibold rounded-lg hover:bg-navy-700 transition-all duration-300 shadow-md shadow-navy-800/20 hover:-translate-y-0.5"
               id="nav-cta"
             >
-              Book a Consultation
-              <ArrowRight className="w-4 h-4" />
+              Book Consultation
+              <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
 
@@ -260,7 +270,16 @@ export default function Navbar() {
               </Link>
             );
           })}
-          <div className="pt-3 pb-1">
+          <div className="pt-3 pb-1 space-y-2">
+            <a
+              href="https://partners.creso.in/mfd/unovia"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 w-full px-5 py-3 bg-gradient-to-r from-gold-500 to-gold-600 text-navy-950 text-sm font-extrabold rounded-xl shadow-md"
+            >
+              <TrendingUp className="w-4 h-4 text-navy-950" />
+              Start Your Investment Journey
+            </a>
             <Link
               href="/contact"
               className="flex items-center justify-center gap-2 w-full px-5 py-3 bg-navy-800 text-white text-sm font-semibold rounded-xl hover:bg-navy-700 transition-colors"

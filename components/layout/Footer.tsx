@@ -8,9 +8,10 @@ import { COMPANY, SERVICES } from "@/lib/constants";
 // =============================================================================
 
 const RESOURCE_LINKS = [
-  { label: "Insights & Articles", href: "/insights" },
-  { label: "Daily Market Brief", href: "/daily-brief" },
-  { label: "SIP & Lumpsum Calculator", href: "/calculators/sip-lumpsum" },
+  { label: "Insights & Articles", href: "/insights", external: false },
+  { label: "Daily Market Brief", href: "/daily-brief", external: false },
+  { label: "SIP & Lumpsum Calculator", href: "/calculators/sip-lumpsum", external: false },
+  { label: "Start Your Investment Journey", href: "https://partners.creso.in/mfd/unovia", external: true },
 ];
 
 const COMPANY_LINKS = [
@@ -99,12 +100,23 @@ export default function Footer() {
             <ul className="space-y-2.5">
               {RESOURCE_LINKS.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-gray-400 hover:text-gold-400 transition-colors duration-200"
-                  >
-                    {link.label}
-                  </Link>
+                  {link.external ? (
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm font-semibold text-gold-400 hover:text-white transition-colors duration-200 flex items-center gap-1"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className="text-sm text-gray-400 hover:text-gold-400 transition-colors duration-200"
+                    >
+                      {link.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
