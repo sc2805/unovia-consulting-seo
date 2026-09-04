@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
     });
 
     return NextResponse.json(
-      { message: "Your message has been sent successfully!", id: result.id },
+      { message: "Your message has been sent successfully!", id: result?.id || "submitted" },
       { status: 200 }
     );
   } catch (error: unknown) {

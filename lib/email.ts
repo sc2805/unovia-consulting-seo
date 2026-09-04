@@ -1,3 +1,5 @@
+import { Resend } from "resend";
+
 // =============================================================================
 // Email Utility — Contact Form Email Sender via Resend
 // =============================================================================
@@ -16,8 +18,14 @@ export async function sendContactEmail(data: ContactFormData) {
   const apiKey = process.env.RESEND_API_KEY;
   const contactEmail = process.env.CONTACT_EMAIL || "connect@unovia.in";
 
-  // In development or when API key is missing, log submission cleanly
-  if (!apiKey) {
+  // In development or when API key is missing/placeholder, log submission cleanly
+  const isDummyKey =
+    !apiKey ||
+    apiKey.trim() === "" ||
+    apiKey.includes("xxxxxxxx") ||
+    apiKey === "re_";
+
+  if (isDummyKey) {
     console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
     console.log("📧 Contact Form Submission (dev/no-key mode)");
     console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
@@ -32,17 +40,12 @@ export async function sendContactEmail(data: ContactFormData) {
     return { success: true, id: "dev-mode" };
   }
 
-  // Use a verified domain or fallback to unovia.in sender
+  const resend = new Resend(apiKey);
+  // Default from address — unovia.in sender or custom configured sender
   const fromEmail = process.env.RESEND_FROM_EMAIL || "noreply@unovia.in";
 
-  // Send via Resend API
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
+  try {
+    const { data: resData, error } = await resend.emails.send({
       from: `Unovia Consulting <${fromEmail}>`,
       to: [contactEmail],
       reply_to: data.email,
@@ -90,14 +93,22 @@ export async function sendContactEmail(data: ContactFormData) {
           </div>
         </div>
       `,
-    }),
-  });
+    });
 
-  if (!response.ok) {
-    const errorData = await response.json().catch(() => ({ message: "Failed to parse error response" }));
-    console.error("Resend API Email Delivery Error:", errorData);
-    throw new Error(errorData.message || `Resend API error (${response.status})`);
+    if (error) {
+      console.error("❌ Resend API Error:", error);
+      let hint = "";
+      if (error.message?.includes("domain") || error.name === "validation_error") {
+        hint = " (Domain 'unovia.in' is not verified in Resend. Please verify unovia.in at https://resend.com/domains or set RESEND_FROM_EMAIL=onboarding@resend.dev for testing)";
+      } else if (error.message?.includes("only send testing emails")) {
+        hint = " (Resend testing domain onboarding@resend.dev can only send to your Resend account owner email. To send to connect@unovia.in, verify unovia.in domain in Resend)";
+      }
+      throw new Error((error.message || "Failed to send email via Resend.") + hint);
+    }
+
+    return resData;
+  } catch (err: unknown) {
+    console.error("Failed to send contact email:", err);
+    throw err;
   }
-
-  return await response.json();
 }
