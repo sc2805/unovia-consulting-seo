@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import WhatsAppFloat from "@/components/ui/WhatsAppFloat";
@@ -75,6 +76,7 @@ export default function RootLayout({
         <Footer />
         <WhatsAppFloat />
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
