@@ -1,6 +1,56 @@
 {
-  "lastUpdated": "2026-11-21T10:30:55.396Z",
+  "lastUpdated": "2026-11-22T10:35:47.950Z",
   "articles": [
+    {
+      "slug": "why-golds-five-year-winning-streak-is-under-threat-after-dramatic-selloff",
+      "title": "Why gold’s five-year winning streak is under threat after dramatic selloff",
+      "link": "https://economictimes.indiatimes.com/markets/commodities/why-golds-five-year-winning-streak-is-under-threat-after-dramatic-selloff/articleshow/136070323.cms",
+      "pubDate": "Sun, 22 Nov 2026 13:51:09 +0530",
+      "content": "Gold has fallen to around $3,510 an ounce after hitting a record $5,594.82 earlier in 2026, putting it on track for its first annual loss in five years. A stronger dollar, elevated bond yields, profit-booking and weaker safe-haven demand continue to pressure prices.",
+      "excerpt": "Gold has fallen to around $3,510 an ounce after hitting a record $5,594.82 earlier in 2026, putting it on track for its first annual loss in five years. A stronger dollar, elevated bond yields, profit-booking and weaker safe-haven demand continue to pressure prices.",
+      "image": "https://img.etimg.com/photo/msid-136070323,imgsize-102862.cms",
+      "source": "Economic Times"
+    },
+    {
+      "slug": "invit-ipo-rush-gathers-pace-4-5-private-trusts-likely-to-go-public-by-mar-2027",
+      "title": "InvIT IPO rush gathers pace; 4-5 private trusts likely to go public by Mar 2027",
+      "link": "https://economictimes.indiatimes.com/markets/ipos/fpos/invit-ipo-rush-gathers-pace-4-5-private-trusts-likely-to-go-public-by-mar-2027/articleshow/136069094.cms",
+      "pubDate": "Sun, 22 Nov 2026 12:15:10 +0530",
+      "content": "Four to five Infrastructure Investment Trusts are expected to launch public offerings to raise Rs 17,000 crore by 2027. These offerings aim to mobilise long-term capital for infrastructure development while appealing to a broader pool of investors. Notable companies like Brookfield and Investcorp are preparing to shift to public InvITs. In the past, InvITs raised around Rs 88,000 crore, demonstrating investor appetite.",
+      "excerpt": "Four to five Infrastructure Investment Trusts are expected to launch public offerings to raise Rs 17,000 crore by 2027. These offerings aim to mobilise long-term capital for infrastructure development while appealing to a broader pool of investors. Notable companies like Brookfie",
+      "image": "https://img.etimg.com/photo/msid-136069094,imgsize-41748.cms",
+      "source": "Economic Times"
+    },
+    {
+      "slug": "5-penny-stocks-plunge-up-to-68-in-six-months-do-you-own-any",
+      "title": "5 penny stocks plunge up to 68% in six months. Do you own any?",
+      "link": "https://economictimes.indiatimes.com/markets/stocks/news/5-penny-stocks-plunge-up-to-68-in-six-months-do-you-own-any/slideshow/136069072.cms",
+      "pubDate": "Sun, 22 Nov 2026 12:03:45 +0530",
+      "content": "Five BSE Smallcap penny stocks have fallen between 21% and 68% in recent months. Kalind and Empower India led the declines, plunging 68% and 62%, respectively.",
+      "excerpt": "Five BSE Smallcap penny stocks have fallen between 21% and 68% in recent months. Kalind and Empower India led the declines, plunging 68% and 62%, respectively.",
+      "image": "https://img.etimg.com/photo/msid-136068975,imgsize-10749.cms",
+      "source": "Economic Times"
+    },
+    {
+      "slug": "reliance-brands-fy26-revenue-up-38-to-rs-33909-crore-loss-narrows-to-rs-137-crore",
+      "title": "Reliance Brands FY26 revenue up 3.8% to Rs 3,390.9 crore; loss narrows to Rs 137 crore",
+      "link": "https://economictimes.indiatimes.com/markets/stocks/earnings/reliance-brands-fy26-revenue-up-3-8-to-rs-3390-9-crore-loss-narrows-to-rs-137-crore/articleshow/136068185.cms",
+      "pubDate": "Sun, 22 Nov 2026 11:14:52 +0530",
+      "content": "Reliance Brands has marked a significant financial milestone, achieving a revenue of Rs 3,390.89 crore for FY26 and reducing losses. Operating more than 1,085 Points of Sale nationwide, the brand continues to collaborate with over 90 partner names. Recent acquisitions, including Hamleys and new entries like Stella McCartney and Fabletics, demonstrate the company’s drive to lead in the competitive fashion and lifestyle industry.",
+      "excerpt": "Reliance Brands has marked a significant financial milestone, achieving a revenue of Rs 3,390.89 crore for FY26 and reducing losses. Operating more than 1,085 Points of Sale nationwide, the brand continues to collaborate with over 90 partner names. Recent acquisitions, including ",
+      "image": "https://img.etimg.com/photo/msid-136068185,imgsize-169960.cms",
+      "source": "Economic Times"
+    },
+    {
+      "slug": "anthropics-post-debut-stumble-delivers-reality-check-for-ai-trade",
+      "title": "Anthropic's post-debut stumble delivers reality check for AI trade",
+      "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/anthropics-post-debut-stumble-delivers-reality-check-for-ai-trade/articleshow/136066633.cms",
+      "pubDate": "Sun, 22 Nov 2026 09:00:15 +0530",
+      "content": "Anthropic’s shares fell about 9% after their market debut, deepening concerns over stretched AI valuations and showing that even a marquee listing has not revived investor enthusiasm for the sector. The focus is now shifting to whether Anthropic can justify its roughly 40-times-sales valuation and whether a potential OpenAI IPO next year can restore appetite for AI stocks.",
+      "excerpt": "Anthropic’s shares fell about 9% after their market debut, deepening concerns over stretched AI valuations and showing that even a marquee listing has not revived investor enthusiasm for the sector. The focus is now shifting to whether Anthropic can justify its roughly 40-times-s",
+      "image": "https://img.etimg.com/photo/msid-136066633,imgsize-42900.cms",
+      "source": "Economic Times"
+    },
     {
       "slug": "nifty-eyes-26200-as-rally-strengthens-6-sectors-signal-outperformance",
       "title": "Nifty eyes 26,200 as rally strengthens; 6 sectors signal outperformance",
@@ -199,56 +249,6 @@
       "content": "SEBI is set to release a consultation paper aimed at simplifying regulations for foreign portfolio investors. The goal is to eliminate certain compliance restrictions to enhance India's appeal to global investors. SEBI also plans to expedite the onboarding process, targeting completion in just five business days. Additionally, KYC review cycles for applicable FPIs will be extended, reducing repetitive compliance activities.",
       "excerpt": "SEBI is set to release a consultation paper aimed at simplifying regulations for foreign portfolio investors. The goal is to eliminate certain compliance restrictions to enhance India's appeal to global investors. SEBI also plans to expedite the onboarding process, targeting comp",
       "image": "https://img.etimg.com/photo/msid-136020808,imgsize-41262.cms",
-      "source": "Economic Times"
-    },
-    {
-      "slug": "indian-finance-hub-eyes-dual-share-model-to-kickstart-public-offers-report",
-      "title": "Indian finance hub eyes dual share model to kickstart public offers: Report",
-      "link": "https://economictimes.indiatimes.com/markets/stocks/news/indian-finance-hub-eyes-dual-share-model-to-kickstart-public-offers-report/articleshow/136017941.cms",
-      "pubDate": "Fri, 20 Nov 2026 13:02:59 +0530",
-      "content": "Indian regulators are currently assessing a new proposal that would allow companies to introduce dual-class shares for listings in both domestic markets and GIFT City. This initiative seeks to invigorate equity market activity in GIFT City, which has faced challenges regarding limited primary market participation. One class of shares would be traded in rupees, while the other would be dollar-denominated, granting foreign investors easier access alongside reduced tax implications.",
-      "excerpt": "Indian regulators are currently assessing a new proposal that would allow companies to introduce dual-class shares for listings in both domestic markets and GIFT City. This initiative seeks to invigorate equity market activity in GIFT City, which has faced challenges regarding li",
-      "image": "https://img.etimg.com/photo/msid-136017941,imgsize-147888.cms",
-      "source": "Economic Times"
-    },
-    {
-      "slug": "who-is-roaring-kitty-the-man-behind-gamestops-meme-rally",
-      "title": "Who is Roaring Kitty? The man behind GameStop's meme rally",
-      "link": "https://economictimes.indiatimes.com/markets/us-stocks/news/who-is-roaring-kitty-the-man-behind-gamestops-meme-rally/slideshow/136017912.cms",
-      "pubDate": "Fri, 20 Nov 2026 12:20:28 +0530",
-      "content": "Keith Gill, better known as Roaring Kitty, is back on social media after nearly two years. His cryptic Cat Mario post sent GameStop shares higher, reviving memories of the 2021 meme-stock rally and sparking fresh interest among retail investors.",
-      "excerpt": "Keith Gill, better known as Roaring Kitty, is back on social media after nearly two years. His cryptic Cat Mario post sent GameStop shares higher, reviving memories of the 2021 meme-stock rally and sparking fresh interest among retail investors.",
-      "image": "https://img.etimg.com/photo/msid-136016993,imgsize-44200.cms",
-      "source": "Economic Times"
-    },
-    {
-      "slug": "sun-pharma-share-price-live-updates-sun-pharma-stock-price-history",
-      "title": "Sun Pharma Share Price Live Updates: Sun Pharma Stock Price History",
-      "link": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/sun-pharma-stock-price-livestock-price-today-live-updates-20-nov-2026/liveblog/136016959.cms",
-      "pubDate": "Fri, 20 Nov 2026 12:19:25 +0530",
-      "content": "",
-      "excerpt": "",
-      "image": "https://img.etimg.com/photo/msid-136016959,imgsize-72289.cms",
-      "source": "Economic Times"
-    },
-    {
-      "slug": "mm-share-price-live-updates-mm-stock-price-history",
-      "title": "M&M Share Price Live Updates: M&M Stock Price History",
-      "link": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/mm-share-price-today-live-20-nov-2026/liveblog/136016893.cms",
-      "pubDate": "Fri, 20 Nov 2026 12:17:54 +0530",
-      "content": "",
-      "excerpt": "",
-      "image": "https://img.etimg.com/photo/msid-136016893,imgsize-4428.cms",
-      "source": "Economic Times"
-    },
-    {
-      "slug": "eicher-motors-share-price-live-updates-eicher-motors-stock-price-history",
-      "title": "Eicher Motors Share Price Live Updates: Eicher Motors Stock Price History",
-      "link": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/eicher-motors-share-price-live-20-nov-2026/liveblog/136016875.cms",
-      "pubDate": "Fri, 20 Nov 2026 12:17:28 +0530",
-      "content": "",
-      "excerpt": "",
-      "image": "https://img.etimg.com/photo/msid-136016875,imgsize-3258.cms",
       "source": "Economic Times"
     }
   ]
